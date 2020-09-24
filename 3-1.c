@@ -10,6 +10,7 @@ typedef PtrToNode Position;
 Position Header(void);
 void Add(List list, int N);
 void Print(List list);
+
 struct Node
 {
     int Element;
