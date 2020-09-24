@@ -18,7 +18,6 @@ struct Node
 
 int main()
 {
-
     List array = Header();
     int N;
     printf("Enter the number of elements to be added: ");
