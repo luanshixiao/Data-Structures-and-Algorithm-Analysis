@@ -121,24 +121,31 @@ List MultiplyPolynomial(List A, List B)
 
     while (curlA != NULL)
     {
-        curl = First(C);
-        curlB = First(B);
         while (curlB != NULL)
         {
             ABexp = curlA->exp + curlB->exp;
             ABcoe = curlA->coe * curlB->coe;
 
-            while (curl->exp > ABexp)
+            if (curl->exp == ABexp)
             {
-                if (curl->Next == NULL || curl->Next->exp < ABexp)
+                curl->coe += ABcoe;
+            }
+            else if (curl->exp > ABexp)
+            {
+                if (curl->Next == NULL || ABexp > curl->Next->exp)
                 {
                     Insert(curl);
                     curl->Next->exp = ABexp;
-                    curl->Next->coe += ABcoe;
+                    curl->Next->coe = ABcoe;
+                    curl = curl->Next;
                 }
-                curl = curl->Next;
+                else if (curl->Next->exp > ABexp)
+                {
+                    curl = curl->Next;
+                    continue;
+                }
             }
-            if (curl->exp == 0)
+            else if (curl->coe == 0)
             {
                 curl->exp = ABexp;
                 curl->coe = ABcoe;
@@ -147,6 +154,8 @@ List MultiplyPolynomial(List A, List B)
             curlB = curlB->Next;
         }
 
+        curl = First(C);
+        curlB = First(B);
         curlA = curlA->Next;
     }
 
