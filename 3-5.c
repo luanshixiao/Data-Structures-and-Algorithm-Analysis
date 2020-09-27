@@ -18,7 +18,7 @@ Position Header(void);
 Position Generation(List list, int N, bool status);
 Position Add(Position Last, int N);
 void Print(List list);
-List ListInserction(List L1, List L2);
+List ListUnion(List L1, List L2);
 
 int main()
 {
@@ -37,7 +37,7 @@ int main()
     printf("List L2: ");
     Print(L2);
 
-    Print(ListInserction(L1, L2));
+    Print(ListUnion(L1, L2));
 
     return 0;
 }
@@ -111,7 +111,7 @@ void Print(List list)
     printf("\n");
 }
 
-List ListInserction(List L1, List L2)
+List ListUnion(List L1, List L2)
 {
     List result = Header();
     List resultLast = result;
@@ -121,9 +121,17 @@ List ListInserction(List L1, List L2)
     while (L1 != NULL && L2 != NULL)
     {
         if (L1->Element < L2->Element)
+        {
+            resultLast = Add(resultLast, 1);
+            resultLast->Element = L1->Element;
             L1 = L1->Next;
+        }
         else if (L1->Element > L2->Element)
+        {
+            resultLast = Add(resultLast, 1);
+            resultLast->Element = L2->Element;
             L2 = L2->Next;
+        }
         else
         {
             resultLast = Add(resultLast, 1);
@@ -131,6 +139,18 @@ List ListInserction(List L1, List L2)
             L1 = L1->Next;
             L2 = L2->Next;
         }
+    }
+    while (L1 != NULL)
+    {
+        resultLast = Add(resultLast, 1);
+        resultLast->Element = L1->Element;
+        L1 = L1->Next;
+    }
+    while (L2 != NULL)
+    {
+        resultLast = Add(resultLast, 1);
+        resultLast->Element = L2->Element;
+        L2 = L2->Next;
     }
 
     return result;
