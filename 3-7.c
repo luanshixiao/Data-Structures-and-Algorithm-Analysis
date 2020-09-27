@@ -115,14 +115,18 @@ List MultiplyPolynomial(List A, List B)
     List C = Header();
     Insert(C);
     Position curl = First(C);
+
+    int ABexp;
+    int ABcoe;
+
     while (curlA != NULL)
     {
         curl = First(C);
         curlB = First(B);
         while (curlB != NULL)
         {
-            int ABexp = curlA->exp + curlB->exp;
-            int ABcoe = curlA->coe * curlB->coe;
+            ABexp = curlA->exp + curlB->exp;
+            ABcoe = curlA->coe * curlB->coe;
 
             while (curl->exp > ABexp)
             {
