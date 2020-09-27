@@ -146,7 +146,9 @@ List MultiplyPolynomial(List A, List B)
 
             curlB = curlB->Next;
         }
+
         curlA = curlA->Next;
     }
+
     return C;
 }
