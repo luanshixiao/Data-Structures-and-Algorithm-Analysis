@@ -16,7 +16,7 @@ struct Node
 
 Position Header(void);
 Position First(List list);
-Position Add(List list, int N, bool status);
+Position Add(List list, int N, bool state);
 void Print(List list);
 void PrintLots(List L, List P);
 
@@ -56,10 +56,10 @@ Position First(List list)
         return list->Next;
 }
 
-Position Add(List list, int N, bool status)
+Position Add(List list, int N, bool state)
 {
     Position cur = list;
-    if (status == true)
+    if (state == true)
     {
         printf("List P: ");
         for (int i = 0; i < N; i++)

@@ -15,7 +15,7 @@ struct Node
 };
 
 Position Header(void);
-Position Generation(List list, int N, bool status);
+Position Generation(List list, int N, bool state);
 Position Add(Position Last, int N);
 void Print(List list);
 List ListUnion(List L1, List L2);
@@ -58,10 +58,10 @@ Position First(List list)
         return list->Next;
 }
 
-Position Generation(List list, int N, bool status)
+Position Generation(List list, int N, bool state)
 {
     Position cur = list;
-    if (status == true)
+    if (state == true)
     {
         for (int i = 0; i < N; i++)
         {
