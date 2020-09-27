@@ -1,17 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 struct Node;
 typedef struct Node *PtrToNode;
 typedef PtrToNode List;
 typedef PtrToNode Position;
-
-Position Header(void);
-Position First(List list);
-Position Add(List list, int N, bool status);
-void Print(List list);
-void PrintLots(List L, List P);
 
 struct Node
 {
@@ -19,8 +14,17 @@ struct Node
     Position Next;
 };
 
+Position Header(void);
+Position First(List list);
+Position Add(List list, int N, bool status);
+void Print(List list);
+void PrintLots(List L, List P);
+
 int main()
 {
+
+    srand((unsigned)time(NULL));
+
     List L = Header();
     List P = Header();
 
@@ -73,7 +77,7 @@ Position Add(List list, int N, bool status)
         for (int i = 0; i < N; i++)
         {
             Position new_node = malloc(sizeof(struct Node));
-            new_node->Element = rand();
+            new_node->Element = rand() % 100;
             new_node->Next = NULL;
             cur->Next = new_node;
             cur = cur->Next;
@@ -85,7 +89,7 @@ Position Add(List list, int N, bool status)
 void Print(List list)
 {
     Position pos;
-    for (pos = list->Next; pos != NULL; pos = pos->Next)
+    for (pos = First(list); pos != NULL; pos = pos->Next)
         printf("%d ", pos->Element);
     printf("\n");
 }
